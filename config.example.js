@@ -4,7 +4,7 @@
 
 module.exports = {
   db: {
-    uri: '', //place the URI of your mongo database here.
+    uri: 'mongodb://<dbuser>:<dbpassword>@ds047355.mongolab.com:47355/listing', //place the URI of your mongo database here.
   }
 };
 

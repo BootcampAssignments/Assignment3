@@ -8,13 +8,35 @@ var fs = require('fs'),
     Schema = mongoose.Schema, 
     Listing = require('./ListingSchema.js'), 
     config = require('./config');
-
-/* Connect to your database */
+var listings;
+/* Connect to your database */ 
+mongoose.connect('mongodb://isa:123@ds047355.mongolab.com:47355/listing');
 
 /* 
   Instantiate a mongoose model for each listing object in the JSON file, 
   and then save it to your Mongo database 
  */
+
+ fs.readFile('listings.json', 'utf8', function(err, data) {
+      listings = JSON.parse(data);
+      console.log(listings.entries[1].name);
+
+    // create a new user
+    for (var i= 0; i < listings.entries.length; i++){
+      var newList = Listing({
+      code: listings.entries[i].code,
+      name: listings.entries[i].name,
+      cooordinates: listings.entries[i].coordinates, 
+      addresss: listings.entries[i].addresss
+      }); 
+
+      newList.save(function(err) {
+      if (err) throw err;
+      console.log("Added list");
+      });
+    }
+  });
+
 
 
 /* 
