@@ -26,13 +26,13 @@ mongoose.connect('mongodb://isa:123@ds047355.mongolab.com:47355/listing');
       var newList = Listing({
       code: listings.entries[i].code,
       name: listings.entries[i].name,
-      cooordinates: listings.entries[i].coordinates, 
-      addresss: listings.entries[i].addresss
+      coordinates: listings.entries[i].coordinates, 
+      address: listings.entries[i].address
       }); 
 
       newList.save(function(err) {
       if (err) throw err;
-      console.log("Added list");
+      // console.log("Added list");
       });
     }
   });
